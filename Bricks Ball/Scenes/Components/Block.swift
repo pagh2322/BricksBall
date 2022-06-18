@@ -67,12 +67,16 @@ class Block: SKShapeNode {
         }
     }
     
-    func getTouched() {
+    // return true when block's hp is over
+    func getTouched() -> Bool {
         self.reduceHP()
         if self.hp == 0 {
             self.removeFromParent()
+            self.hpLabel.removeFromParent()
             Block.blockList.remove(at: Block.blockList.firstIndex(of: self)!)
+            return true
         }
+        return false
     }
     
     func setPosition(_ position: CGPoint) {

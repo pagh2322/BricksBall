@@ -17,6 +17,10 @@ class GameScene: SKScene {
     
     private var canTouch = true
     
+    private var score = 0
+    
+    var gameViewController: GameViewController?
+    
     override func didMove(to view: SKView) {
         self.initialize()
     }
@@ -111,7 +115,6 @@ extension GameScene {
         self.newBlock = Block(hp: randomHP)
         let randomRowIndex = Int.random(in: 0...1)
         let randomColumnIndex = Int.random(in: 0...6)
-//        self.newBlock?.position = Const.Node.Block.possibleStartPositions[randomRowIndex][randomColumnIndex]
         self.newBlock?.setPosition(Const.Node.Block.possibleStartPositions[randomRowIndex][randomColumnIndex])
         self.addChild(self.newBlock!)
         self.addChild(self.newBlock!.hpLabel)
@@ -128,7 +131,6 @@ extension GameScene {
         let randomHP = Int.random(in: 3...6)
         self.newBlock = Block(hp: randomHP)
         let randomColumnIndex = Int.random(in: 0...6)
-//        self.newBlock?.position = Const.Node.Block.nextBlockStartPosition[randomColumnIndex]
         self.newBlock?.setPosition(Const.Node.Block.nextBlockStartPosition[randomColumnIndex])
         self.addChild(self.newBlock!)
         self.addChild(self.newBlock!.hpLabel)
@@ -151,13 +153,15 @@ extension GameScene: SKPhysicsContactDelegate {
         if (contact.bodyA.categoryBitMask == 0x1 && contact.bodyB.categoryBitMask == 0x2) ||
            (contact.bodyA.categoryBitMask == 0x2 && contact.bodyB.categoryBitMask == 0x1) {
             if contact.bodyA.node is Block {
-                Block.blockList.first { block in
-                    block.name == contact.bodyA.node?.name
-                }?.getTouched()
+                if Block.blockList.first(where: { $0.name == contact.bodyA.node?.name })!.getTouched() {
+                    self.score += 1
+                    self.gameViewController?.addToScore(self.score)
+                }
             } else {
-                Block.blockList.first { block in
-                    block.name == contact.bodyB.node?.name
-                }?.getTouched()
+                if Block.blockList.first(where: { $0.name == contact.bodyB.node?.name })!.getTouched() {
+                    self.score += 1
+                    self.gameViewController?.addToScore(self.score)
+                }
             }
         } else if (contact.bodyA.categoryBitMask == 0x1 && contact.bodyB.categoryBitMask == 0x4) ||
                   (contact.bodyA.categoryBitMask == 0x4 && contact.bodyB.categoryBitMask == 0x1) {

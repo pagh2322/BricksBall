@@ -30,7 +30,7 @@ class DetectLine: SKShapeNode {
         let dashed = linePath.cgPath.copy(dashingWithPhase: 1, lengths: pattern)
         self.path = dashed
         
-        self.strokeColor = .systemPink
+        self.strokeColor = .clear
         self.setPhysicsBody()
         self.disableBitMask()
     }

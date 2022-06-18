@@ -14,13 +14,9 @@ class GameViewController: UIViewController {
     let gameView: GameView = {
         return GameView(frame: .zero)
     }()
-    
-    var appDelegate: AppDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         self.setGameScene()
         self.setGameView()
@@ -49,12 +45,21 @@ class GameViewController: UIViewController {
     
     func setGameScene() {
         self.scene = GameScene(size: Const.Scene.gameSceneSize)
+        self.scene?.gameViewController = self
         self.scene?.scaleMode = .aspectFit
-//        self.scene?.view?.showsPhysics = true
     }
     func setGameView() {
         self.gameView.gameView.ignoresSiblingOrder = true
-        self.gameView.gameView.showsPhysics = true
         self.gameView.gameView.presentScene(self.scene)
+        
+        self.gameView.topToolBar.settingButton.addTarget(self, action: #selector(settingButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc func settingButtonPressed() {
+        print("present setting view / go back alert")
+    }
+    
+    func addToScore(_ score: Int) {
+        self.gameView.topToolBar.setCurrentScore(score)
     }
 }

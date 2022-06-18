@@ -23,6 +23,9 @@
 		B7EC9A80285CCC670073F8D6 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A7F285CCC670073F8D6 /* Const.swift */; };
 		B7EC9A83285CCE0B0073F8D6 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A82285CCE0B0073F8D6 /* Scene.swift */; };
 		B7EC9A85285CCE2B0073F8D6 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A84285CCE2B0073F8D6 /* Node.swift */; };
+		B7EC9A8C285DEB210073F8D6 /* TopToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A8B285DEB210073F8D6 /* TopToolBar.swift */; };
+		B7EC9A8E285DEC6A0073F8D6 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A8D285DEC6A0073F8D6 /* View.swift */; };
+		B7EC9A91285DEF2A0073F8D6 /* BottomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		B7EC9A7F285CCC670073F8D6 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		B7EC9A82285CCE0B0073F8D6 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		B7EC9A84285CCE2B0073F8D6 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B7EC9A8B285DEB210073F8D6 /* TopToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopToolBar.swift; sourceTree = "<group>"; };
+		B7EC9A8D285DEC6A0073F8D6 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 		B7D2FBF4285B371100315D88 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
+				B7EC9A86285DEABB0073F8D6 /* Components */,
 				B7D2FBF5285B518B00315D88 /* GameView.swift */,
 				B7D2FBDB285B340500315D88 /* GameViewController.swift */,
 			);
@@ -163,8 +170,34 @@
 				B7EC9A7F285CCC670073F8D6 /* Const.swift */,
 				B7EC9A82285CCE0B0073F8D6 /* Scene.swift */,
 				B7EC9A84285CCE2B0073F8D6 /* Node.swift */,
+				B7EC9A8D285DEC6A0073F8D6 /* View.swift */,
 			);
 			path = Consts;
+			sourceTree = "<group>";
+		};
+		B7EC9A86285DEABB0073F8D6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B7EC9A89285DEAF20073F8D6 /* TopToolBar */,
+				B7EC9A8F285DEF160073F8D6 /* BottomToolBar */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B7EC9A89285DEAF20073F8D6 /* TopToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				B7EC9A8B285DEB210073F8D6 /* TopToolBar.swift */,
+			);
+			path = TopToolBar;
+			sourceTree = "<group>";
+		};
+		B7EC9A8F285DEF160073F8D6 /* BottomToolBar */ = {
+			isa = PBXGroup;
+			children = (
+				B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */,
+			);
+			path = BottomToolBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +274,8 @@
 			files = (
 				B7D2FBDA285B340500315D88 /* GameScene.swift in Sources */,
 				B7EC9A83285CCE0B0073F8D6 /* Scene.swift in Sources */,
+				B7EC9A91285DEF2A0073F8D6 /* BottomToolBar.swift in Sources */,
+				B7EC9A8E285DEC6A0073F8D6 /* View.swift in Sources */,
 				B7EC9A80285CCC670073F8D6 /* Const.swift in Sources */,
 				B7D2FBDC285B340500315D88 /* GameViewController.swift in Sources */,
 				B7D2FBD4285B340500315D88 /* AppDelegate.swift in Sources */,
@@ -251,6 +286,7 @@
 				B7EC9A7C285CB7F70073F8D6 /* Ball.swift in Sources */,
 				B7EC9A7E285CC5790073F8D6 /* Block.swift in Sources */,
 				B7D2FBF6285B518B00315D88 /* GameView.swift in Sources */,
+				B7EC9A8C285DEB210073F8D6 /* TopToolBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

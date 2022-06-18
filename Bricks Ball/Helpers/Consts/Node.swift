@@ -15,7 +15,7 @@ extension Const {
         
         struct Ball {
             static let radius = 15.0
-            static let startPosition = CGPoint(x: Scene.gameSceneWidth / 2.0, y: 0)
+            static let startPosition = CGPoint(x: Scene.gameSceneWidth / 2.0, y: 15.0)
         }
         
         struct Block {

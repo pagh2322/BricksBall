@@ -12,12 +12,15 @@ class GameScene: SKScene {
     private var detectLine: DetectLine?
     private var ball = Ball(circleOfRadius: 15)
     private var newBlock: Block?
+    private var guideLine: GuideLine?
     
     private var currentBallPosition: CGPoint?
     
     private var canTouch = true
     
-    private var score = 0
+    private var score = 0 // only record current score
+    
+    private var numberOfTimes = 0 // number of times player tap the screen
     
     var gameViewController: GameViewController?
     
@@ -27,20 +30,39 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.canTouch {
-            Block.blockList.forEach { block in
-                block.physicsBody?.isDynamic = false
+            if let touch = touches.first {
+                self.ball.physicsBody?.isDynamic = false
+                let touchLocation = touch.location(in: self)
+                
+                self.guideLine?.setLine(
+                    ballPosition: self.ball.position,
+                    touchPosition: touchLocation
+                )
+                self.addChild(self.guideLine!)
             }
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        if self.canTouch {
+            if let touch = touches.first {
+                let touchLocation = touch.location(in: self)
+                
+                self.guideLine?.setLine(
+                    ballPosition: self.ball.position,
+                    touchPosition: touchLocation
+                )
+            }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.canTouch {
             if let touch = touches.first {
+                self.ball.physicsBody?.isDynamic = true
                 self.canTouch = false
+                self.guideLine?.removeFromParent()
+                self.numberOfTimes += 1
                 
                 let touchLocation = touch.location(in: self)
                 
@@ -87,6 +109,7 @@ extension GameScene {
         self.initPosition()
         self.initBlocks()
         self.initDetectLine()
+        self.initGuideLine()
     }
     
     func setBackground() {
@@ -124,6 +147,10 @@ extension GameScene {
         self.detectLine = DetectLine(sceneFrame: self.frame)
         self.addChild(self.detectLine!)
     }
+    
+    func initGuideLine() {
+        self.guideLine = GuideLine(ballPosition: self.currentBallPosition!)
+    }
 }
 
 extension GameScene {
@@ -137,11 +164,14 @@ extension GameScene {
     }
     func moveBlocks() {
         Block.blockList.forEach { block in
-            block.run(SKAction.moveTo(y: block.position.y - block.size.height, duration: 0.5))
-            block.hpLabel.run(SKAction.moveTo(y: block.hpLabel.position.y - block.size.height, duration: 0.5))
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-                block.physicsBody?.isDynamic = true
-            }
+            block.run(SKAction.moveTo(
+                y: block.position.y - block.size.height,
+                duration: 0.5
+            ))
+            block.hpLabel.run(SKAction.moveTo(
+                y: block.hpLabel.position.y - block.size.height,
+                duration: 0.5
+            ))
         }
     }
 }
@@ -168,10 +198,9 @@ extension GameScene: SKPhysicsContactDelegate {
             // Ball and DetectLine - Stop Ball, Next Turn
             self.detectLine?.disableBitMask()
             self.ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            self.ball.run(SKAction.moveTo(y: 0, duration: 0.0))
             
             self.currentBallPosition = self.ball.position
-            
-            self.ball.run(SKAction.moveTo(y: 0, duration: 0.0))
             
             self.makeNextBlock()
             self.moveBlocks()
@@ -181,7 +210,7 @@ extension GameScene: SKPhysicsContactDelegate {
         } else if (contact.bodyA.categoryBitMask == 0x2 && contact.bodyB.categoryBitMask == 0x8) ||
                   (contact.bodyA.categoryBitMask == 0x8 && contact.bodyB.categoryBitMask == 0x2) {
             // Block and DetectLine - Game Over
-            print("Game Over")
+            print("present game over alert")
         }
     }
 }

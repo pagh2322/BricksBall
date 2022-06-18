@@ -35,5 +35,6 @@ class Ball: SKShapeNode {
     func setBitMask() {
         self.physicsBody?.categoryBitMask = 0x1
         self.physicsBody?.contactTestBitMask = 0x2 | 0x4 // contact with DetectLine and Block
+        self.physicsBody?.contactTestBitMask = 0x2 | 0x4
     }
 }

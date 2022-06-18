@@ -51,6 +51,7 @@ class GameViewController: UIViewController {
     func setGameView() {
         self.gameView.gameView.ignoresSiblingOrder = true
         self.gameView.gameView.presentScene(self.scene)
+        self.gameView.gameView.showsPhysics = true
         
         self.gameView.topToolBar.settingButton.addTarget(self, action: #selector(settingButtonPressed), for: .touchUpInside)
     }

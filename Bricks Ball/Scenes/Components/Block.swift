@@ -30,8 +30,6 @@ class Block: SKShapeNode {
         self.name = String(Block.blockIndex)
         self.fillColor = .systemRed
         self.strokeColor = .systemRed
-        self.setPhysicsBody()
-        self.setBitMask()
     }
     
     convenience init(hp: Int) {
@@ -41,6 +39,8 @@ class Block: SKShapeNode {
         self.setHPLabel()
         Block.blockIndex += 1
         Block.blockList.append(self)
+        self.setPhysicsBody()
+        self.setBitMask()
     }
     
     func setHPLabel() {

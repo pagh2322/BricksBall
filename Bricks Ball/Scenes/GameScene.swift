@@ -31,6 +31,10 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.canTouch {
             if let touch = touches.first {
+                Block.blockList.forEach { block in
+                    block.physicsBody?.isDynamic = false
+                }
+                
                 self.ball.physicsBody?.isDynamic = false
                 let touchLocation = touch.location(in: self)
                 
@@ -172,6 +176,9 @@ extension GameScene {
                 y: block.hpLabel.position.y - block.size.height,
                 duration: 0.5
             ))
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                block.physicsBody?.isDynamic = true
+            }
         }
     }
 }

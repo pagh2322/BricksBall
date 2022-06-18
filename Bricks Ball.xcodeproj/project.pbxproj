@@ -16,7 +16,6 @@
 		B7D2FBE4285B340700315D88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7D2FBE2285B340700315D88 /* LaunchScreen.storyboard */; };
 		B7D2FBED285B34FF00315D88 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2FBEC285B34FF00315D88 /* HomeViewController.swift */; };
 		B7D2FBF0285B359600315D88 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2FBEF285B359600315D88 /* HomeView.swift */; };
-		B7D2FBF3285B364600315D88 /* MPCHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2FBF2285B364600315D88 /* MPCHandler.swift */; };
 		B7D2FBF6285B518B00315D88 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2FBF5285B518B00315D88 /* GameView.swift */; };
 		B7D2FBFB285B886200315D88 /* DetectLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D2FBFA285B886200315D88 /* DetectLine.swift */; };
 		B7EC9A7C285CB7F70073F8D6 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A7B285CB7F60073F8D6 /* Ball.swift */; };
@@ -37,7 +36,6 @@
 		B7D2FBE3285B340700315D88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7D2FBEC285B34FF00315D88 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B7D2FBEF285B359600315D88 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B7D2FBF2285B364600315D88 /* MPCHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPCHandler.swift; sourceTree = "<group>"; };
 		B7D2FBF5285B518B00315D88 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B7D2FBFA285B886200315D88 /* DetectLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectLine.swift; sourceTree = "<group>"; };
 		B7EC9A7B285CB7F60073F8D6 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				B7EC9A81285CCE010073F8D6 /* Consts */,
-				B7D2FBF2285B364600315D88 /* MPCHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -253,7 +250,6 @@
 				B7D2FBED285B34FF00315D88 /* HomeViewController.swift in Sources */,
 				B7EC9A7C285CB7F70073F8D6 /* Ball.swift in Sources */,
 				B7EC9A7E285CC5790073F8D6 /* Block.swift in Sources */,
-				B7D2FBF3285B364600315D88 /* MPCHandler.swift in Sources */,
 				B7D2FBF6285B518B00315D88 /* GameView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

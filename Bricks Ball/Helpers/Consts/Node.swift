@@ -21,6 +21,7 @@ extension Const {
         
         struct Block {
             static let size = CGSize(width: Scene.gameSceneWidth / 7.0, height: Scene.gameSceneHeight / 15) // 1 row, 7 blocks; 1 column, 15 blocks
+            static let hpLabelFontSize = size.height - 20.0
             static let possibleStartPositions = [
                 [
                     CGPoint(

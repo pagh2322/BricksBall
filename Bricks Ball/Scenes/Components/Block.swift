@@ -11,7 +11,13 @@ class Block: SKShapeNode {
     
     var size: CGSize
     
-    private var hp: Int
+    private var hp: Int {
+        didSet {
+            self.hpLabel.text = String(self.hp)
+        }
+    }
+    
+    var hpLabel: SKLabelNode
     
     static var blockList: [Block] = []
     static var blockIndex = 0
@@ -19,6 +25,7 @@ class Block: SKShapeNode {
     override init() {
         self.size = Const.Node.Block.size
         self.hp = 1
+        self.hpLabel = SKLabelNode()
         super.init()
         self.name = String(Block.blockIndex)
         self.fillColor = .systemRed
@@ -31,10 +38,15 @@ class Block: SKShapeNode {
         self.init()
         self.init(rectOf: self.size)
         self.hp = hp
+        self.setHPLabel()
         Block.blockIndex += 1
         Block.blockList.append(self)
     }
     
+    func setHPLabel() {
+        self.hpLabel = SKLabelNode(text: "\(self.hp)")
+        self.hpLabel.fontSize = Const.Node.Block.hpLabelFontSize
+    }
     
     func setPhysicsBody() {
         self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
@@ -61,6 +73,12 @@ class Block: SKShapeNode {
             self.removeFromParent()
             Block.blockList.remove(at: Block.blockList.firstIndex(of: self)!)
         }
+    }
+    
+    func setPosition(_ position: CGPoint) {
+        self.position = position
+        self.hpLabel.position = position
+        self.hpLabel.position.y -= (Const.Node.Block.hpLabelFontSize / 2.5)
     }
     
     required init?(coder aDecoder: NSCoder) {

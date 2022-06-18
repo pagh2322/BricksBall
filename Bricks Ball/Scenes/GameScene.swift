@@ -107,12 +107,14 @@ extension GameScene {
     }
     
     func initBlocks() {
-        let randomHP = Int.random(in: 2...10)
+        let randomHP = Int.random(in: 2...5)
         self.newBlock = Block(hp: randomHP)
         let randomRowIndex = Int.random(in: 0...1)
         let randomColumnIndex = Int.random(in: 0...6)
-        self.newBlock?.position = Const.Node.Block.possibleStartPositions[randomRowIndex][randomColumnIndex]
-        self.addChild(newBlock!)
+//        self.newBlock?.position = Const.Node.Block.possibleStartPositions[randomRowIndex][randomColumnIndex]
+        self.newBlock?.setPosition(Const.Node.Block.possibleStartPositions[randomRowIndex][randomColumnIndex])
+        self.addChild(self.newBlock!)
+        self.addChild(self.newBlock!.hpLabel)
     }
     
     func initDetectLine() {
@@ -123,15 +125,18 @@ extension GameScene {
 
 extension GameScene {
     func makeNextBlock() {
-        let randomHP = Int.random(in: 5...10)
+        let randomHP = Int.random(in: 3...6)
         self.newBlock = Block(hp: randomHP)
         let randomColumnIndex = Int.random(in: 0...6)
-        self.newBlock?.position = Const.Node.Block.nextBlockStartPosition[randomColumnIndex]
-        self.addChild(newBlock!)
+//        self.newBlock?.position = Const.Node.Block.nextBlockStartPosition[randomColumnIndex]
+        self.newBlock?.setPosition(Const.Node.Block.nextBlockStartPosition[randomColumnIndex])
+        self.addChild(self.newBlock!)
+        self.addChild(self.newBlock!.hpLabel)
     }
     func moveBlocks() {
         Block.blockList.forEach { block in
             block.run(SKAction.moveTo(y: block.position.y - block.size.height, duration: 0.5))
+            block.hpLabel.run(SKAction.moveTo(y: block.hpLabel.position.y - block.size.height, duration: 0.5))
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 block.physicsBody?.isDynamic = true
             }

@@ -87,6 +87,7 @@ class GameViewController: UIViewController {
     }
 }
 
+// MARK: - Multi Feature
 extension GameViewController: GKMatchDelegate {
     func match(
         _ match: GKMatch,

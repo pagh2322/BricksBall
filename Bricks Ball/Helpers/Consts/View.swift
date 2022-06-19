@@ -11,7 +11,7 @@ extension Const {
     struct View {
         struct TopToolBar {
             static let width = UIScreen.main.bounds.width
-            static let height = UIScreen.main.bounds.height * 0.15
+            static let height = UIScreen.main.bounds.height * 0.2
             static let size = CGSize(width: width, height: height)
             
             struct CurrentScoreLabel {
@@ -31,7 +31,7 @@ extension Const {
         
         struct BottomToolBar {
             static let width = UIScreen.main.bounds.width
-            static let height = UIScreen.main.bounds.height * 0.15
+            static let height = UIScreen.main.bounds.height * 0.1
             static let size = CGSize(width: width, height: height)
         }
     }

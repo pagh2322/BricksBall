@@ -10,7 +10,7 @@ import SpriteKit
 class Ball: SKShapeNode {
     override init() {
         super.init()
-        self.setShape()
+        self.setColor()
         self.setPhysics()
         self.setBitMask()
     }
@@ -19,7 +19,7 @@ class Ball: SKShapeNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setShape() {
+    func setColor() {
         self.fillColor = .systemBlue
     }
     
@@ -35,6 +35,6 @@ class Ball: SKShapeNode {
     func setBitMask() {
         self.physicsBody?.categoryBitMask = 0x1
         self.physicsBody?.contactTestBitMask = 0x2 | 0x4 // contact with DetectLine and Block
-        self.physicsBody?.contactTestBitMask = 0x2 | 0x4
+        self.physicsBody?.collisionBitMask = 0x2 | 0x4
     }
 }

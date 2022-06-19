@@ -28,8 +28,8 @@ class Block: SKShapeNode {
         self.hpLabel = SKLabelNode()
         super.init()
         self.name = String(Block.blockIndex)
-        self.fillColor = .systemRed
-        self.strokeColor = .systemRed
+        self.fillColor = .purple
+        self.strokeColor = .purple
     }
     
     convenience init(hp: Int) {

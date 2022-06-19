@@ -30,12 +30,13 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.canTouch {
+            Block.blockList.forEach { block in
+                block.physicsBody?.isDynamic = false
+            }
+            
             if let touch = touches.first {
-                Block.blockList.forEach { block in
-                    block.physicsBody?.isDynamic = false
-                }
-                
                 self.ball.physicsBody?.isDynamic = false
+                
                 let touchLocation = touch.location(in: self)
                 
                 self.guideLine?.setLine(
@@ -70,24 +71,9 @@ class GameScene: SKScene {
                 
                 let touchLocation = touch.location(in: self)
                 
-                let originDX = touchLocation.x - self.currentBallPosition!.x
-                var originDY = touchLocation.y - self.currentBallPosition!.y
+                self.moveBall(along: touchLocation)
                 
-                if originDY < 35 {
-                    originDY = 35
-                }
-                
-                var newDX = sqrt(pow(originDX, 2) / (pow(originDX, 2) + pow(originDY, 2))) * 22.0
-                let newDY = sqrt(pow(originDY, 2) / (pow(originDX, 2) + pow(originDY, 2))) * 22.0
-                
-                if originDX < 0 {
-                    newDX = 0 - newDX
-                }
-                
-                let impulse = CGVector(dx: newDX, dy: newDY)
-                self.ball.physicsBody?.applyImpulse(impulse)
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01) {
                     self.detectLine?.setBitMask()
                 }
             }
@@ -124,7 +110,7 @@ extension GameScene {
         self.scene?.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.scene?.physicsBody?.friction = 0.0
         self.scene?.physicsBody?.restitution = 1.0
-        self.scene?.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        self.scene?.physicsWorld.gravity = CGVector(dx: 0, dy: -1.0)
         self.physicsWorld.contactDelegate = self
     }
     
@@ -157,6 +143,29 @@ extension GameScene {
     }
 }
 
+// MARK: - Ball
+extension GameScene {
+    func moveBall(along: CGPoint) {
+        let originDX = along.x - self.currentBallPosition!.x
+        var originDY = along.y - self.currentBallPosition!.y
+        
+        if originDY < 35 {
+            originDY = 35
+        }
+        
+        var newDX = sqrt(pow(originDX, 2) / (pow(originDX, 2) + pow(originDY, 2))) * 20.0
+        let newDY = sqrt(pow(originDY, 2) / (pow(originDX, 2) + pow(originDY, 2))) * 20.0
+        
+        if originDX < 0 {
+            newDX = 0 - newDX
+        }
+        
+        let impulse = CGVector(dx: newDX, dy: newDY)
+        self.ball.physicsBody?.applyImpulse(impulse)
+    }
+}
+
+// MARK: - Block
 extension GameScene {
     func makeNextBlock() {
         let randomHP = Int.random(in: 3...6)
@@ -178,6 +187,9 @@ extension GameScene {
             ))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 block.physicsBody?.isDynamic = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+                block.physicsBody?.isDynamic = false
             }
         }
     }
@@ -211,7 +223,7 @@ extension GameScene: SKPhysicsContactDelegate {
             
             self.makeNextBlock()
             self.moveBlocks()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
                 self.canTouch = true
             }
         } else if (contact.bodyA.categoryBitMask == 0x2 && contact.bodyB.categoryBitMask == 0x8) ||

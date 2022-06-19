@@ -27,6 +27,7 @@
 		B7EC9A8E285DEC6A0073F8D6 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A8D285DEC6A0073F8D6 /* View.swift */; };
 		B7EC9A91285DEF2A0073F8D6 /* BottomToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */; };
 		B7EC9A93285E19C40073F8D6 /* GuideLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EC9A92285E19C40073F8D6 /* GuideLine.swift */; };
+		B7EC9A96285E47140073F8D6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7EC9A95285E47140073F8D6 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		B7EC9A8D285DEC6A0073F8D6 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomToolBar.swift; sourceTree = "<group>"; };
 		B7EC9A92285E19C40073F8D6 /* GuideLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLine.swift; sourceTree = "<group>"; };
+		B7EC9A95285E47140073F8D6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7EC9A96285E47140073F8D6 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +72,7 @@
 			children = (
 				B7D2FBD2285B340500315D88 /* Bricks Ball */,
 				B7D2FBD1285B340500315D88 /* Products */,
+				B7EC9A94285E47140073F8D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,6 +205,14 @@
 				B7EC9A90285DEF2A0073F8D6 /* BottomToolBar.swift */,
 			);
 			path = BottomToolBar;
+			sourceTree = "<group>";
+		};
+		B7EC9A94285E47140073F8D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7EC9A95285E47140073F8D6 /* GameKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,6 +445,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -461,6 +474,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
